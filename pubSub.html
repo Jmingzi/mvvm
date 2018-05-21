@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<script>
+    let pubSub = {
+      callback: {},
+      uid: 0,
+
+      pub(topic, args) {
+        if (!this.callback[topic]) {
+          // 不存在订阅者
+          return false
+        }
+
+        const suber = this.callback[topic]
+        let len = suber.length
+        while (len--) {
+          suber[len].func(topic, args)
+        }
+      },
+
+      sub(topic, func) {
+        if (!this.callback[topic]) {
+          // 同一个事件，订阅者可能会很多
+          this.callback[topic] = []
+        }
+
+        this.uid++
+        let token = String(this.uid)
+        this.callback[topic].push({
+          token,
+          func
+        })
+
+        return token
+      },
+
+      unSub(token) {
+
+      }
+    }
+
+    pubSub.sub('a', (topic, data) => {
+      console.log(topic, data)
+    })
+
+    pubSub.pub('a', 'hehe')
+</script>
+</body>
+</html>
