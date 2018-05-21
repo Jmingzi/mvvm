@@ -2,6 +2,8 @@ function Compile(el, vm) {
   this.$vm = vm
   this.$el = this.isElementNode(el) ? el : document.querySelector(el)
   if (this.$el) {
+    // 因为很频繁的操作dom
+    // 所以我们使用文档片段来避免这个性能问题
     this.$fragment = this.node2Fragment(this.$el)
     this.compileElement(this.$fragment)
     // 添加片段到节点中
@@ -75,6 +77,8 @@ Compile.prototype = {
     let fragment = document.createDocumentFragment()
     let child = node.firstChild
     while (child) {
+      // 此处的appendChild，功能类似与添加后移除
+      // 也就是说node中的节点每次循环后都在减少
       fragment.appendChild(child)
       child = node.firstChild
     }

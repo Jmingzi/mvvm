@@ -9,6 +9,9 @@ function defineReactive(data, key, val) {
       enumerable: true,
       configurable: true,
       get() {
+        // 添加订阅者
+        // 初始化模版编译的时候，会去new Watcher，从而触发get调用
+        // 并将当前watcher实例赋值给Dep.target
         if (Dep.target) {
           dep.addSub(Dep.target)
         }
