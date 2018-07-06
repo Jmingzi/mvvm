@@ -15,14 +15,11 @@ function defineReactive(data, key, val) {
         if (Dep.target) {
           dep.addSub(Dep.target)
         }
-        console.log('val', val)
         return val
       },
       set(newVal) {
         console.log(`key ${key} change, val: ${newVal}`)
-        debugger
         val = newVal
-        console.log(data)
         dep.notify()
       }
     }
