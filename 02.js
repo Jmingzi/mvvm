@@ -6,4 +6,3 @@ master
 add
 
 第一次修改
-var flag = false
