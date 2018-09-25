@@ -1,0 +1,21 @@
+{
+  "name": "mvvm",
+  "version": "1.0.0",
+  "description": "vue双向绑定核心",
+  "main": "02.js",
+  "scripts": {
+    "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s -r 0",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Jmingzi/mvvm.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Jmingzi/mvvm/issues"
+  },
+  "homepage": "https://github.com/Jmingzi/mvvm#readme"
+}
